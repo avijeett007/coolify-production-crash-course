@@ -1,0 +1,44 @@
+
+ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -C "emailaddress"
+
+Server Command: ./harden-server.sh -u devops -k "public_key" -h prod-coolify-server
+
+
+
+Run --> 
+sudo apt update
+sudo apt upgrade -y
+
+Make sure it shows 0 updates !
+
+Install Coolify (Run As Root - Must)
+
+curl -fsSL https://cdn.coollabs.io/coolify/install.sh | bash
+
+Once installed, access it through the port it shown - and register. Use some easy password, we need to change it later once we secure
+the coolify dashboard
+
+
+
+You may need to run these
+sed -i 's/- host.docker.internal:host-gateway/- "host.docker.internal:172.17.0.1"/' docker-compose.yml
+
+Settings -> Set Coolify Domain Name
+
+Flush Your Cache - sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
+
+
+nohup ~/restore-iptables.sh &
+
+Buy a Domain / Go To Your Domain Provider
+
+Register in Cloudfare
+
+Select Free Tier
+
+Change Name Servers to point to Cloudfare
+
+Go To Coolify Servers Select Localhost Server & update the wildcard domain name
+
+
+
